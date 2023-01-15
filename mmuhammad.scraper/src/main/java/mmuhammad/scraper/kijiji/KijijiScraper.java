@@ -96,7 +96,7 @@ public abstract class KijijiScraper implements Scraper {
 				this.titles = parseData("info-container", this.titles);
 				
 				for(Element price : this.prices) {
-	//				System.out.println(price.text());
+//					System.out.println(price.text());
 				}
 				
 				for(Element descriptions : this.descriptions) {

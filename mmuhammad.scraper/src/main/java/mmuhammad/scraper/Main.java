@@ -3,7 +3,7 @@ package mmuhammad.scraper;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import mmuhammad.scraper.kijiji.cars.CarIndex;
 import mmuhammad.scraper.kijiji.housing.TwoBedroomApartmentScraper;
 import mmuhammad.scraper.kijiji.housing.TwoBedroomBasementScraper;
 import mmuhammad.scraper.persistance.DbPersistance;
@@ -24,7 +24,7 @@ public class Main {
 		};
 		
 		String [] twoBedroomBasementLinks = {
-			/* GTA */ "https://www.kijiji.ca/b-apartments-condos/markham-york-region/2+bedrooms-apartment/page-{i}/c37l1700274a27949001a29276001?ll=43.872291%2C-79.482061&address=266+Lady+Valentina+Ave%2C+Maple%2C+ON+L6A+0E1%2C+Canada&ad=offering&radius=68.0",
+			/* GTA */ "https://www.kijiji.ca/b-apartments-condos/markham-york-region/2+bedrooms-basement+apartment/page-{i}/c37l1700274a27949001a29276001?ll=43.872291%2C-79.482061&address=266+Lady+Valentina+Ave%2C+Maple%2C+ON+L6A+0E1%2C+Canada&ad=offering&radius=68.0",
 			/* STC */ "https://www.kijiji.ca/b-apartments-condos/st-catharines/2+bedrooms-basement+apartment/page-{i}/c37l80016a27949001a29276001?radius=10.0&address=St.+Catharines%2C+ON&ll=43.159375,-79.246863",
 			/* DUR */ "https://www.kijiji.ca/b-apartments-condos/oshawa-durham-region/2+bedrooms-basement+apartment/page-{i}/c37l1700275a27949001a29276001",
 			/* HAM */ "https://www.kijiji.ca/b-apartments-condos/hamilton/2+bedrooms-basement+apartment/page-{i}/c37l80014a27949001a29276001?ll=43.255721%2C-79.871102&address=Hamilton%2C+ON&radius=20.0",
@@ -33,6 +33,8 @@ public class Main {
 		
 		scrapers.add(new TwoBedroomApartmentScraper("Numeric data", twoBedroomApartmentLinks));
 		scrapers.add(new TwoBedroomBasementScraper("Numeric data", twoBedroomBasementLinks));
+		scrapers.add(new CarIndex("Numeric data", new String[] {"https://www.kijiji.ca/b-cars-vehicles/canada/page-{i}/c27l0?ad=offering"}));
+		
 		for(Scraper sc : scrapers) {
 			sc.scrape();
 		}
