@@ -108,6 +108,7 @@ public abstract class KijijiScraper implements Scraper {
 				try{d = this.descriptions.get(j).text();}catch(Exception e){}
 				try{a = this.addresses.get(j).text();}catch(Exception e) {}
 				
+				d="";
 				
 				Model data = new KijijiModel(t, p, d, a, this.getClass().getName().toString());
 				
