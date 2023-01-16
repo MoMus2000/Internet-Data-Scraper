@@ -3,17 +3,18 @@ package mmuhammad.scraper;
 import java.util.ArrayList;
 import java.util.List;
 
-import mmuhammad.scraper.kijiji.cars.CarIndex;
-import mmuhammad.scraper.kijiji.housing.TwoBedroomApartmentScraper;
-import mmuhammad.scraper.kijiji.housing.TwoBedroomBasementScraper;
-import mmuhammad.scraper.persistance.DbPersistance;
-import mmuhammad.scraper.persistance.SqlitePersistance;
+import electronics.AppleWatch;
+import model.SqlitePersistance;
 
 public class Main {
 	public static void main(String[] args) {
 		System.out.println("Booting scrapers ...");
 		
-		List<Scraper> scrapers = new ArrayList<Scraper>(); 
+		SqlitePersistance database = new SqlitePersistance("/Users/mmuhammad/Desktop/projects/mmuhammad.net/mmuhammad.net/db/lenslocked_dev.db");
+		
+		
+		List<Scraper> scrapers = new ArrayList<Scraper>();
+		List<Scraper> housingScrapers = new ArrayList<Scraper>();
 		
 		String[] twoBedroomApartmentLinks = {
 			/* GTA */	"https://www.kijiji.ca/b-apartments-condos/markham-york-region/2+bedrooms-apartment/page-{i}/c37l1700274a27949001a29276001?ll=43.872291%2C-79.482061&address=266+Lady+Valentina+Ave%2C+Maple%2C+ON+L6A+0E1%2C+Canada&ad=offering&radius=68.0",
@@ -31,16 +32,48 @@ public class Main {
 			/* WIN */ "https://www.kijiji.ca/b-apartments-condos/windsor-area-on/2+bedrooms-basement+apartment/page-{i}/c37l1700220a27949001a29276001?ll=42.314937%2C-83.036363&address=Windsor%2C+ON&radius=20.0"
 		};
 		
-		scrapers.add(new TwoBedroomApartmentScraper("Numeric data", twoBedroomApartmentLinks));
-		scrapers.add(new TwoBedroomBasementScraper("Numeric data", twoBedroomBasementLinks));
-		scrapers.add(new CarIndex("Numeric data", new String[] {"https://www.kijiji.ca/b-cars-vehicles/canada/page-{i}/c27l0?ad=offering"}));
+		String[] appleWatch = {
+				"https://www.kijiji.ca/b-buy-sell/canada/apple-watch-se/page-{i}/k0c10l0?rb=true",
+//				"https://www.kijiji.ca/b-buy-sell/canada/apple-watch-series-7/page-{i}/k0c10l0?ad=offering"
+		};
+		
+		
+//		housingScrapers.add(new OneBedroomApartmentScraperHamilton(null, appleWatch, database.connection));
+//		housingScrapers.add(new OneBedroomApartmentScraperDurham(null, appleWatch, database.connection));
+//		housingScrapers.add(new OneBedroomApartmentScraperWindsor(null, appleWatch, database.connection));
+//		housingScrapers.add(new OneBedroomApartmentScraperGTA(null, appleWatch, database.connection));
+//		housingScrapers.add(new OneBedroomApartmentScraperStCatharines(null, appleWatch, database.connection));
+//		
+//		
+//		housingScrapers.add(new TwoBedroomApartmentScraperHamilton(null, appleWatch, database.connection));
+//		housingScrapers.add(new TwoBedroomApartmentScraperDurham(null, appleWatch, database.connection));
+//		housingScrapers.add(new TwoBedroomApartmentScraperWindsor(null, appleWatch, database.connection));
+//		housingScrapers.add(new TwoBedroomApartmentScraperGTA(null, appleWatch, database.connection));
+//		housingScrapers.add(new TwoBedroomApartmentScraperStCatharines(null, appleWatch, database.connection));
+//		
+//		
+//		housingScrapers.add(new OneBedroomBasementScraperHamilton(null, appleWatch, database.connection));
+//		housingScrapers.add(new OneBedroomBasementScraperDurham(null, appleWatch, database.connection));
+//		housingScrapers.add(new OneBedroomBasementScraperWindsor(null, appleWatch, database.connection));
+//		housingScrapers.add(new OneBedroomBasementScraperGTA(null, appleWatch, database.connection));
+//		housingScrapers.add(new OneBedroomBasementScraperStCatharines(null, appleWatch, database.connection));
+//		
+//		housingScrapers.add(new TwoBedroomBasementScraperHamilton(null, appleWatch, database.connection));
+//		housingScrapers.add(new TwoBedroomBasementScraperDurham(null, appleWatch, database.connection));
+//		housingScrapers.add(new TwoBedroomBasementScraperWindsor(null, appleWatch, database.connection));
+//		housingScrapers.add(new TwoBedroomBasementScraperGTA(null, appleWatch, database.connection));
+//		housingScrapers.add(new TwoBedroomBasementScraperStCatharines(null, appleWatch, database.connection));
+		
+		
+//		scrapers.add(new CarIndex("Numeric data", new String[] {"https://www.kijiji.ca/b-cars-vehicles/canada/page-{i}/c27l0?ad=offering"}, database.connection));
+//		scrapers.add(new PS5("Numeric data", new String[] {"https://www.kijiji.ca/b-sony-playstation-5/canada/ps5/page-{i}/k0c39730002l0?ad=offering&price=300__"}, database.connection));
+		scrapers.add(new AppleWatch("Numeric data", appleWatch[0], database.connection));
 		
 		for(Scraper sc : scrapers) {
 			sc.scrape();
 		}
 		
 		System.out.println("Saving data ...");
-		DbPersistance database = new SqlitePersistance(null, null);
 		System.out.println(database);
 		System.out.println("Done");
 	}

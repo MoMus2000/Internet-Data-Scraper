@@ -1,5 +1,7 @@
 package mmuhammad.scraper.kijiji.cars;
 
+import java.sql.Connection;
+
 import mmuhammad.scraper.Scraper;
 import mmuhammad.scraper.kijiji.KijijiScraper;
 
@@ -9,15 +11,9 @@ import mmuhammad.scraper.kijiji.KijijiScraper;
 
 public class CarIndex extends KijijiScraper implements Scraper{
 
-	public CarIndex(String type, String[] userUrls) {
-		super(type, userUrls);
+	public CarIndex(String type, String userUrls, Connection dbConnection) {
+		super(type, userUrls, dbConnection);
 		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public void saveToDB() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
