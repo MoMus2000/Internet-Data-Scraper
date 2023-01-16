@@ -19,7 +19,6 @@ import model.Kijiji.KijijiModel;
 
 public abstract class KijijiScraper implements Scraper {
 
-	public String type;
 	public String userUrls;
 	
 	public Document doc;
@@ -37,8 +36,7 @@ public abstract class KijijiScraper implements Scraper {
 	public Set<String> urlSet = new HashSet<String>();
 	
 	
-	public KijijiScraper(String type, String userUrls, Connection connection) {
-		this.type = type;
+	public KijijiScraper(String userUrls, Connection connection) {
 		this.userUrls = userUrls;
 		this.titles = new ArrayList<Element>();
 		this.descriptions = new ArrayList<Element>();
@@ -107,8 +105,8 @@ public abstract class KijijiScraper implements Scraper {
 				p = this.filterPrice(this.prices.get(j));
 				t = this.filterPrice(this.titles.get(j));
 				
-				try{d = this.descriptions.get(j).text();}catch(Exception e){System.out.println(e);}
-				try{a = this.addresses.get(j).text();}catch(Exception e) {System.out.println(e);}
+				try{d = this.descriptions.get(j).text();}catch(Exception e){}
+				try{a = this.addresses.get(j).text();}catch(Exception e) {}
 				
 				
 				Model data = new KijijiModel(t, p, d, a, this.getClass().getName().toString());

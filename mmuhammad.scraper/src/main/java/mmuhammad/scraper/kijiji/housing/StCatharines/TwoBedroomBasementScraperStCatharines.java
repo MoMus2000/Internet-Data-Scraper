@@ -6,8 +6,8 @@ import mmuhammad.scraper.kijiji.housing.TwoBedroomBasementScraper;
 
 public class TwoBedroomBasementScraperStCatharines extends TwoBedroomBasementScraper{
 
-	public TwoBedroomBasementScraperStCatharines(String type, String userUrls, Connection dbConnection) {
-		super(type, userUrls, dbConnection);
+	public TwoBedroomBasementScraperStCatharines(String userUrls, Connection dbConnection) {
+		super(userUrls, dbConnection);
 		// TODO Auto-generated constructor stub
 	}
 

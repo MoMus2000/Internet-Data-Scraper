@@ -6,8 +6,8 @@ import mmuhammad.scraper.kijiji.housing.OneBedroomApartmentScraper;
 
 public class OneBedroomApartmentScraperGTA extends OneBedroomApartmentScraper {
 
-	public OneBedroomApartmentScraperGTA(String type, String userUrls, Connection dbConnection) {
-		super(type, userUrls, dbConnection);
+	public OneBedroomApartmentScraperGTA(String userUrls, Connection dbConnection) {
+		super(userUrls, dbConnection);
 		// TODO Auto-generated constructor stub
 	}
 

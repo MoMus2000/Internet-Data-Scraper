@@ -7,8 +7,8 @@ import mmuhammad.scraper.kijiji.KijijiScraper;
 
 public class OneBedroomBasementScraper extends KijijiScraper implements Scraper {
 
-	public OneBedroomBasementScraper(String type, String userUrls, Connection connection) {
-		super(type, userUrls, connection);
+	public OneBedroomBasementScraper(String userUrls, Connection connection) {
+		super(userUrls, connection);
 		// TODO Auto-generated constructor stub
 	}
 

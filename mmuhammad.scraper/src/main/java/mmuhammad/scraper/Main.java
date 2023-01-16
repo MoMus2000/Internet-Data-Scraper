@@ -3,7 +3,7 @@ package mmuhammad.scraper;
 import java.util.ArrayList;
 import java.util.List;
 
-import electronics.AppleWatch;
+import mmuhammad.scraper.kijiji.cars.CarIndex;
 import model.SqlitePersistance;
 
 public class Main {
@@ -65,9 +65,9 @@ public class Main {
 //		housingScrapers.add(new TwoBedroomBasementScraperStCatharines(null, appleWatch, database.connection));
 		
 		
-//		scrapers.add(new CarIndex("Numeric data", new String[] {"https://www.kijiji.ca/b-cars-vehicles/canada/page-{i}/c27l0?ad=offering"}, database.connection));
+		scrapers.add(new CarIndex("https://www.kijiji.ca/b-cars-vehicles/canada/page-{i}/c27l0?ad=offering", database.connection));
 //		scrapers.add(new PS5("Numeric data", new String[] {"https://www.kijiji.ca/b-sony-playstation-5/canada/ps5/page-{i}/k0c39730002l0?ad=offering&price=300__"}, database.connection));
-		scrapers.add(new AppleWatch("Numeric data", appleWatch[0], database.connection));
+//		scrapers.add(new AppleWatch(appleWatch[0], database.connection));
 		
 		for(Scraper sc : scrapers) {
 			sc.scrape();

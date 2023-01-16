@@ -11,8 +11,8 @@ import mmuhammad.scraper.kijiji.KijijiScraper;
 
 public class CarIndex extends KijijiScraper implements Scraper{
 
-	public CarIndex(String type, String userUrls, Connection dbConnection) {
-		super(type, userUrls, dbConnection);
+	public CarIndex(String userUrls, Connection dbConnection) {
+		super(userUrls, dbConnection);
 		// TODO Auto-generated constructor stub
 	}
 

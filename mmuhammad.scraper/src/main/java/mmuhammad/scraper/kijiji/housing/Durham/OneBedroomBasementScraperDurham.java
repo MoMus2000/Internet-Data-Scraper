@@ -6,8 +6,8 @@ import mmuhammad.scraper.kijiji.housing.OneBedroomBasementScraper;
 
 public class OneBedroomBasementScraperDurham extends OneBedroomBasementScraper {
 
-	public OneBedroomBasementScraperDurham(String type, String userUrls, Connection connection) {
-		super(type, userUrls, connection);
+	public OneBedroomBasementScraperDurham(String userUrls, Connection connection) {
+		super(userUrls, connection);
 		// TODO Auto-generated constructor stub
 	}
 
