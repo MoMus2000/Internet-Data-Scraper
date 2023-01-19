@@ -3,21 +3,22 @@ package model.Kijiji;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import model.Model;
 
 
-public class KijijiModel extends Model {
-	String title;
-	String price;
-	String descriptions;
-	String address;
-	String date;
+public class KijijiModel extends Model{
+	public String title;
+	public String price;
+	public String descriptions;
+	public String address;
+	public String date;
+	public static Connection conn;
 	
 	public KijijiModel(String title, String price, String description, String address, String className) {
+		super(title, price, description, address, className);
 		this.title = title;
 		this.price = price;
 		this.descriptions = description;
@@ -32,11 +33,16 @@ public class KijijiModel extends Model {
 		LocalDateTime now = LocalDateTime.now();  
 		this.date = dtf.format(now);
 	}
+	
+	public static void setConnection(Connection conn) {
+		KijijiModel.conn = conn; 
+	}
+	
 
 	@Override
-	public void saveToDb(Connection connection) {
+	public void saveToDb() {
 		try {
-			PreparedStatement st = connection.prepareStatement(
+			PreparedStatement st = KijijiModel.conn.prepareStatement(
 					"INSERT INTO JAVA_SCRAPER"
 					+"(Date, Title, Price, Description, Address, JobName) "
 					+"VALUES(?, ?, ?, ?, ?, ?)");
@@ -54,8 +60,5 @@ public class KijijiModel extends Model {
 		}
 		
 	}
-	
-	
-	
 	
 }

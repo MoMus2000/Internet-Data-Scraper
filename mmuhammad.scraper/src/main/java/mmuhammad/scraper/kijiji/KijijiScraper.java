@@ -1,6 +1,5 @@
 package mmuhammad.scraper.kijiji;
 
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -21,6 +20,8 @@ public abstract class KijijiScraper implements Scraper {
 
 	public String userUrls;
 	
+	public final int NUMBEROFPAGES = 10; 
+	
 	public Document doc;
 	
 	Timer time = new Timer();
@@ -30,20 +31,19 @@ public abstract class KijijiScraper implements Scraper {
 	public List<Element> addresses;
 	public List<Element> prices;
 	public List<Element> links;
-	
-	public Connection dbConnection;
+	public List<Model> scrapedData;
 	
 	public Set<String> urlSet = new HashSet<String>();
 	
 	
-	public KijijiScraper(String userUrls, Connection connection) {
+	public KijijiScraper(String userUrls) {
 		this.userUrls = userUrls;
 		this.titles = new ArrayList<Element>();
 		this.descriptions = new ArrayList<Element>();
 		this.addresses = new ArrayList<Element>();
 		this.prices = new ArrayList<Element>();
 		this.links = new ArrayList<Element>();
-		this.dbConnection = connection;
+		this.scrapedData = new ArrayList<Model>();
 	}
 	
 	public void requestSite(String url) {
@@ -65,8 +65,9 @@ public abstract class KijijiScraper implements Scraper {
 		return dataList;
 	}
 	
-	public void scrape() {
-		for(int i=0; i<200; i++) {
+	public List<Model> scrape() {
+		
+		for(int i=0; i<NUMBEROFPAGES; i++) {
 			
 			try {
 				TimeUnit.SECONDS.sleep(5);
@@ -108,20 +109,36 @@ public abstract class KijijiScraper implements Scraper {
 				try{d = this.descriptions.get(j).text();}catch(Exception e){}
 				try{a = this.addresses.get(j).text();}catch(Exception e) {}
 				
-				d="";
+				d="";			
 				
-				Model data = new KijijiModel(t, p, d, a, this.getClass().getName().toString());
-				
-				data.saveToDb(this.dbConnection);
+				this.scrapedData.add(new KijijiModel(t, p, d, a, this.getClass().getName().toString()));
 			}
 			
 		}
 		
+		return this.scrapedData;
+		
 	}
 	
 	public String filterPrice(Element e) {
-		return e.text().toString().replace("$", "").replaceAll(",", "");
+		String number = e.text().toString().replace("$", "").replaceAll(",", "");
+		if(isNumeric(number)) {
+			return number;
+		}
+		return "NAN";
 	}
+	
+	
+	public static boolean isNumeric(String str) { 
+		try {  
+		    Double.parseDouble(str);  
+		    return true;
+		  } 
+		catch(NumberFormatException e){  
+		    return false;  
+		  }  
+	}
+	
 	
 	public String filterTitles(Element e) {
 		return e.getElementsByClass("title").text();

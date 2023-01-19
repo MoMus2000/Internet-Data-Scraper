@@ -3,7 +3,6 @@ package model;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -79,6 +78,6 @@ public class SqlitePersistance extends DbPersistance {
 	}
 	
 	public static void main(String[] args) {
-		DbPersistance sqlite = new SqlitePersistance("/Users/mmuhammad/Desktop/projects/mmuhammad.net/mmuhammad.net/db/lenslocked_dev.db");
+//		DbPersistance sqlite = new SqlitePersistance("/Users/mmuhammad/Desktop/projects/mmuhammad.net/mmuhammad.net/db/lenslocked_dev.db");
 	}
 }

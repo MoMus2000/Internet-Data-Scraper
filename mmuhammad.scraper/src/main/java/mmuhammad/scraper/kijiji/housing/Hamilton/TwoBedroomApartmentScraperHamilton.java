@@ -1,13 +1,11 @@
 package mmuhammad.scraper.kijiji.housing.Hamilton;
 
-import java.sql.Connection;
-
 import mmuhammad.scraper.kijiji.housing.TwoBedroomApartmentScraper;
 
 public class TwoBedroomApartmentScraperHamilton extends TwoBedroomApartmentScraper {
 
-	public TwoBedroomApartmentScraperHamilton(String userUrls, Connection dbConnection) {
-		super(userUrls, dbConnection);
+	public TwoBedroomApartmentScraperHamilton(String userUrls) {
+		super(userUrls);
 		// TODO Auto-generated constructor stub
 	}
 

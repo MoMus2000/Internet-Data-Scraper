@@ -1,13 +1,11 @@
 package mmuhammad.scraper.kijiji.housing.Windsor;
 
-import java.sql.Connection;
-
 import mmuhammad.scraper.kijiji.housing.TwoBedroomBasementScraper;
 
 public class TwoBedroomBasementScraperWindsor extends TwoBedroomBasementScraper {
 
-	public TwoBedroomBasementScraperWindsor(String userUrls, Connection dbConnection) {
-		super(userUrls, dbConnection);
+	public TwoBedroomBasementScraperWindsor(String userUrls) {
+		super(userUrls);
 		// TODO Auto-generated constructor stub
 	}
 
